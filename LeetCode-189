@@ -1,0 +1,36 @@
+'''
+
+'''
+
+'''
+一开始用了以下暴力解法，发现超时了。。。
+'''
+'''
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        while k:
+            rotate_one(nums)
+            k -= 1
+    
+def rotate_one(nums):
+    left = nums[-1];
+    for i in range(len(nums)):
+        cur = nums[i];
+        nums[i] = left;
+        left = cur;
+'''
+
+'''
+第二次使用了python的原生函数解法
+'''
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        k = k % len(nums) #解决k > len(nums)的情况
+        for i in range(k):
+            nums.insert(0, nums.pop()) #每次将最后一个元素取出插入起始位置
